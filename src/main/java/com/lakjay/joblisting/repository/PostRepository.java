@@ -1,4 +1,4 @@
-package com.lakjay.joblisting;
+package com.lakjay.joblisting.repository;
 
 import com.lakjay.joblisting.model.Post;
 import org.springframework.data.mongodb.repository.MongoRepository;

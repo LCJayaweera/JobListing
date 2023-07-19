@@ -2,8 +2,9 @@ package com.lakjay.joblisting.Controller;
 
 
 
-import com.lakjay.joblisting.PostRepository;
+import com.lakjay.joblisting.repository.PostRepository;
 import com.lakjay.joblisting.model.Post;
+import com.lakjay.joblisting.repository.SearchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
@@ -18,6 +19,9 @@ public class PostController {
     @Autowired
     PostRepository repo;
 
+    @Autowired
+    SearchRepository srepo;
+
     @ApiIgnore
 @RequestMapping(value="/")
     public void redirect(HttpServletResponse response) throws IOException {
@@ -30,6 +34,11 @@ public class PostController {
     {
 
         return repo.findAll();
+    }
+
+    @GetMapping("/posts/{text}")
+    public List<Post> search(@PathVariable String text){
+        return srepo.findByText(text);
     }
 
 
